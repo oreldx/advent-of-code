@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 
 def open_input() -> list[list[int]]:
@@ -40,12 +40,29 @@ def problem_1() -> int:
 
 def problem_2() -> int:
     banks = open_input()
-    return None
+
+    joltageSum = 0
+    required_length = 12
+    for bank in banks:
+        max_joltage = ""
+        last_idx = 0
+        for i in range(required_length, 0, -1):
+            # print(len(bank), i)
+            available_range = len(bank) - i
+            print(last_idx, available_range + 1)
+            maxium = max(bank[last_idx : available_range + 1])
+            last_idx = bank[last_idx : available_range + 1].index(maxium) + 1
+            max_joltage += str(maxium)
+
+        print(max_joltage)
+        joltageSum += int(max_joltage)
+
+    return joltageSum
 
 
 def main() -> None:
     if DEBUG:
-        print(problem_1())
+        print(problem_2())
         return
 
     match input("Choose which problem to print (1 or 2): "):
