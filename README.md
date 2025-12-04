@@ -1,3 +1,6 @@
+> ## ⚠️ AI prohibited 🔴
+> *"If you send a friend to the gym on your behalf, would you expect to get stronger? Advent of Code puzzles are designed to be interesting for humans to solve - no consideration is made for whether AI can or cannot solve a puzzle. If you want practice prompting an AI, there are almost certainly better exercises elsewhere designed with that in mind."* - Eric Wastl
+
 # [Advent of Code](https://adventofcode.com)
 
 This repository contains my solutions for the Advent of Code challenges. Advent of Code is an annual event with daily programming puzzles that cover a range of difficulty levels and problem types.
@@ -5,6 +8,7 @@ This repository contains my solutions for the Advent of Code challenges. Advent 
 Joined events:
 - [2023](https://adventofcode.com/2023)
 - [2024](https://adventofcode.com/2024)
+- [2025](https://adventofcode.com/2025)
 
 ## Structure
 
@@ -39,21 +43,15 @@ python main.py
 ## Progress
 
 <details> 
-<summary>2023</summary>
+<summary>2025</summary>
 
-- [DAY 01 - Trebuchet?!](https://adventofcode.com/2023/day/1)
-- [DAY 02 - Cube Conundrum](https://adventofcode.com/2023/day/2)
-- [DAY 03 - Gear Ratios](https://adventofcode.com/2023/day/3)
-- [DAY 04 - Scratchcards ](https://adventofcode.com/2023/day/4)
-- [DAY 05 - If You Give A Seed A Fertilizer ](https://adventofcode.com/2023/day/5)
-- [DAY 06 - Wait For It ](https://adventofcode.com/2023/day/6)
-- [DAY 07 - Camel Cards ](https://adventofcode.com/2023/day/7)
-- [DAY 08 - Haunted Wasteland ](https://adventofcode.com/2023/day/8)
-- [DAY 09 - Mirage Maintenance ](https://adventofcode.com/2023/day/9)
-- [DAY 10 - Pipe Maze ](https://adventofcode.com/2023/day/10)
-- [DAY 11 - Cosmic Expansion ](https://adventofcode.com/2023/day/11)
+- (⭐ ⭐) [Day 01: Secret Entrance](https://adventofcode.com/2025/day/1)
+- (⭐ ⭐) [Day 02: Gift Shop](https://adventofcode.com/2025/day/2)
+- (⭐ ⭐) [Day 03: Lobby](https://adventofcode.com/2025/day/3)
+- (⭐ ⭐) [Day 04: Printing Department](https://adventofcode.com/2025/day/4)
 
 </details>
+
 <details> 
 <summary>2024</summary>
 
@@ -71,5 +69,22 @@ python main.py
 - ( * _ ) [Day 12: Garden Groups](https://adventofcode.com/2024/day/12)
 - ( * * ) [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13)
 - ( * * ) [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14)
+
+</details>
+
+<details> 
+<summary>2023</summary>
+
+- [DAY 01 - Trebuchet?!](https://adventofcode.com/2023/day/1)
+- [DAY 02 - Cube Conundrum](https://adventofcode.com/2023/day/2)
+- [DAY 03 - Gear Ratios](https://adventofcode.com/2023/day/3)
+- [DAY 04 - Scratchcards ](https://adventofcode.com/2023/day/4)
+- [DAY 05 - If You Give A Seed A Fertilizer ](https://adventofcode.com/2023/day/5)
+- [DAY 06 - Wait For It ](https://adventofcode.com/2023/day/6)
+- [DAY 07 - Camel Cards ](https://adventofcode.com/2023/day/7)
+- [DAY 08 - Haunted Wasteland ](https://adventofcode.com/2023/day/8)
+- [DAY 09 - Mirage Maintenance ](https://adventofcode.com/2023/day/9)
+- [DAY 10 - Pipe Maze ](https://adventofcode.com/2023/day/10)
+- [DAY 11 - Cosmic Expansion ](https://adventofcode.com/2023/day/11)
 
 </details>
