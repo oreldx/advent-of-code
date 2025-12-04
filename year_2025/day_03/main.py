@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 
 
 def open_input() -> list[list[int]]:
@@ -47,14 +47,14 @@ def problem_2() -> int:
         max_joltage = ""
         last_idx = 0
         for i in range(required_length, 0, -1):
-            # print(len(bank), i)
             available_range = len(bank) - i
-            print(last_idx, available_range + 1)
-            maxium = max(bank[last_idx : available_range + 1])
-            last_idx = bank[last_idx : available_range + 1].index(maxium) + 1
-            max_joltage += str(maxium)
+            available_batteries = bank[
+                last_idx : max(available_range + 1, last_idx + 1)
+            ]
+            maximum = max(available_batteries)
+            last_idx = available_batteries.index(maximum) + 1 + last_idx
+            max_joltage += str(maximum)
 
-        print(max_joltage)
         joltageSum += int(max_joltage)
 
     return joltageSum
