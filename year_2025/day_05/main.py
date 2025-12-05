@@ -17,7 +17,10 @@ def open_input() -> list[list[int]]:
     ]
 
     filepath = "input.txt"
-    data = {"ranges": [], "ids": [], "max_range_idx": 0}
+    data = {
+        "ranges": [],
+        "ids": [],
+    }
     ranges_done = False
     with open(filepath, "r", encoding="utf-8") as f:
         while True:
@@ -41,22 +44,43 @@ def open_input() -> list[list[int]]:
                 data["ids"].append(int(line))
                 continue
             parsed_range = [int(n) for n in line.split("-")]
-            data["max_range_idx"] = max([data["max_range_idx"]] + parsed_range)
             data["ranges"].append(parsed_range)
+
+
+# def optimize_ranges(prev_ranges: list) -> list:
+#     new_ranges = []
+#     for prev_range in prev_ranges:
+#         # update_new_ranges(new_ranges, pr)
+#         hasOverlapped = False
+#         for new_range in new_ranges:
+#             if prev_range[0] > new_range[1] or prev_range[1] < new_range[0]:
+#                 # no overlapping at all
+#                 continue
+#             if prev_range[0] < new_range[0] and prev_range[1] > new_range[0]:
+#                 new_range[0] = prev_range[0]
+#             if prev_range[1] > new_range[1] and prev_range[0] < new_range[1]:
+#                 new_range[1] = prev_range[1]
+#             hasOverlapped = True
+#         if not hasOverlapped:
+#             new_ranges.append(prev_range)
+
+#     # After first iteration, it's possible some new ranges overlape together
+
+#     return new_ranges
 
 
 def problem_1() -> int:
     data = open_input()
 
-    fresh_range = [False for _ in range(data["max_range_idx"] + 1)]
-    for r in data["ranges"]:
-        print(r)
-        for i in range(r[0], r[1] + 1):
-            fresh_range[i] = True
+    # ranges = optimize_ranges(data["ranges"])
+    sum = 0
+    for n in data["ids"]:
+        for r in data["ranges"]:
+            if n >= r[0] and n <= r[1]:
+                sum += 1
+                break
 
-    return sum(
-        [1 if idx < len(fresh_range) and fresh_range[idx] else 0 for idx in data["ids"]]
-    )
+    return sum
 
 
 def problem_2() -> int:
