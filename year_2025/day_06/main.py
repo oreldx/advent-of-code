@@ -1,6 +1,6 @@
 import re
 
-DEBUG = False
+DEBUG = True
 
 
 def open_input() -> list[list[int]]:
@@ -31,16 +31,17 @@ def open_input() -> list[list[int]]:
             data.append(line.strip().split(" "))
 
 
-def problem_1() -> int:
-    def apply_operation(sign: str, a: int, b: int) -> int:
-        match sign:
-            case "*":
-                return a * b
-            case "+":
-                return a + b
-            case _:
-                raise Exception(f"Unknow sing operator {sign}")
+def apply_operation(sign: str, a: int, b: int) -> int:
+    match sign:
+        case "*":
+            return a * b
+        case "+":
+            return a + b
+        case _:
+            raise Exception(f"Unknow sing operator {sign}")
 
+
+def problem_1() -> int:
     data = open_input()
     operators = data[-1]
     col_results = data[0]
@@ -55,13 +56,25 @@ def problem_1() -> int:
 
 def problem_2() -> int:
     data = open_input()
+    operators = data[-1]
+
+    transposed_rows = [[] for _ in range(len(operators))]
+    for row in data[0:-1]:
+        for i, number in enumerate(row):
+            transposed_row = transposed_rows[i]
+            for j, digit in enumerate(number):
+                if j > len(transposed_row) - 1:
+                    transposed_row.append(digit)
+                else:
+                    transposed_row[j] += digit
+            print(transposed_row)
 
     return None
 
 
 def main() -> None:
     if DEBUG:
-        print(problem_1())
+        print(problem_2())
         return
 
     match input("Choose which problem to print (1 or 2): "):
