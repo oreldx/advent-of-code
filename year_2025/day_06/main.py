@@ -1,9 +1,9 @@
 import re
 
-DEBUG = True
+DEBUG = False
 
 
-def open_input() -> list[list[int]]:
+def open_input_1() -> list[list[int]]:
     sample = [
         "123 328  51 64 ",
         " 45 64  387 23 ",
@@ -42,7 +42,7 @@ def apply_operation(sign: str, a: int, b: int) -> int:
 
 
 def problem_1() -> int:
-    data = open_input()
+    data = open_input_1()
     operators = data[-1]
     col_results = data[0]
     for row in data[1:-1]:
@@ -54,22 +54,57 @@ def problem_1() -> int:
     return sum(col_results)
 
 
+def open_input_2() -> list[list[int]]:
+    sample = [
+        "123 328  51 64 ",
+        " 45 64  387 23 ",
+        "  6 98  215 314",
+        "*   +   *   +  ",
+    ]
+
+    filepath = "input.txt"
+    lines = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        while True:
+            line = None
+
+            if DEBUG:
+                if len(sample) == 0:
+                    return lines
+                line = sample.pop(0)
+            else:
+                line = f.readline()
+                if not line:
+                    return lines
+                line = line.replace("\n", "")
+
+            lines.append(line)
+
+    return lines
+
+
 def problem_2() -> int:
-    data = open_input()
-    operators = data[-1]
+    raw_data = open_input_2()
 
-    transposed_rows = [[] for _ in range(len(operators))]
-    for row in data[0:-1]:
-        for i, number in enumerate(row):
-            transposed_row = transposed_rows[i]
-            for j, digit in enumerate(number):
-                if j > len(transposed_row) - 1:
-                    transposed_row.append(digit)
-                else:
-                    transposed_row[j] += digit
-            print(transposed_row)
+    total_sum = 0
+    current_operation = []
+    for i in range(len(raw_data[0]), 0, -1):
+        col_n = ""
+        for j in range(len(raw_data) - 1):
+            if raw_data[j][i - 1] == " ":
+                continue
+            col_n += raw_data[j][i - 1]
+        if col_n != "":
+            current_operation.append(int(col_n))
+        if raw_data[-1][i - 1] in ["*", "+"]:
+            current_operation_sing = raw_data[-1][i - 1]
+            res = int(current_operation[0])
+            for n in current_operation[1:]:
+                res = apply_operation(current_operation_sing, res, int(n))
+            current_operation = []
+            total_sum += res
 
-    return None
+    return total_sum
 
 
 def main() -> None:
