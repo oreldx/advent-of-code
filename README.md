@@ -50,6 +50,7 @@ python main.py
 - (⭐ ⭐) [Day 03: Lobby](https://adventofcode.com/2025/day/3)
 - (⭐ ⭐) [Day 04: Printing Department](https://adventofcode.com/2025/day/4)
 - (⭐ ⭐) [Day 05: Cafeteria](https://adventofcode.com/2025/day/5)
+- (⭐ ⭐) [Day 06: Trash Compactor](https://adventofcode.com/2025/day/6)
 
 </details>
 
