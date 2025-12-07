@@ -71,12 +71,30 @@ def problem_1() -> int:
 
 def problem_2() -> int:
     data = open_input_1()
-    return None
+    for i, row in enumerate(data):
+        for j, cell in enumerate(row):
+            if cell in ["S", "|"]:
+                if i + 1 < len(data) and data[i + 1][j] == ".":
+                    data[i + 1][j] = "|"
+            if cell == "^":
+                if data[i - 1][j] == "|":
+                    data[i][j - 1] = "|"
+                    data[i][j + 1] = "|"
+                    data[i + 1][j - 1] = "|"
+                    data[i + 1][j + 1] = "|"
+
+    counter = 0
+    for i in range(0, len(data), 2):
+        for j in range(len(data[i])):
+            if data[i][j] == "|" and data[i + 1][j] == "|":
+                counter += 1
+
+    return counter
 
 
 def main() -> None:
     if DEBUG:
-        print(problem_1())
+        print(problem_2())
         return
 
     match input("Choose which problem to print (1 or 2): "):
