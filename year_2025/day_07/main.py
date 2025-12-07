@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 
 
 def open_input() -> list[list[int]]:
@@ -84,43 +84,27 @@ def print_grid_cursor(grid: list, x: int, y: int) -> None:
 def problem_2() -> int:
     data = open_input()
 
-    def propagate_beam(x: int, y: int, timelines: int) -> int:
+    def propagate_beam(separator_x: int, separator_y: int, visited: dict) -> int:
+        x = separator_x
+        y = separator_y
         while x < len(data) - 1 and data[x][y] == ".":
             x += 1
 
         if data[x][y] == "^":
-            timelines = propagate_beam(x, y + 1, timelines)
-            timelines = propagate_beam(x, y - 1, timelines)
-            return timelines
+            if f"{x}-{y + 1}" not in visited:
+                visited = propagate_beam(x, y + 1, visited)
+            if f"{x}-{y - 1}" not in visited:
+                visited = propagate_beam(x, y - 1, visited)
+            visited[f"{separator_x}-{separator_y}"] = (
+                visited[f"{x}-{y - 1}"] + visited[f"{x}-{y + 1}"]
+            )
+            return visited
 
-        return timelines + 1
+        visited[f"{separator_x}-{separator_y}"] = 1
+        return visited
 
     start_point = data[0].index("S")
-    return propagate_beam(1, start_point, 0)
-
-
-# def problem_2() -> int:
-#     data = open_input_1()
-#     for i, row in enumerate(data):
-#         for j, cell in enumerate(row):
-#             if cell in ["S", "|"]:
-#                 if i + 1 < len(data) and data[i + 1][j] == ".":
-#                     data[i + 1][j] = "|"
-#             if cell == "^":
-#                 if data[i - 1][j] == "|":
-#                     data[i][j - 1] = "|"
-#                     data[i][j + 1] = "|"
-#                     data[i + 1][j - 1] = "|"
-#                     data[i + 1][j + 1] = "|"
-
-#     counter = 0
-#     for i in range(0, len(data), 2):
-#         print(i)
-#         for j in range(len(data[i])):
-#             if data[i][j] == "|" and data[i + 1][j] == "|":
-#                 counter += 1
-
-#     return counter
+    return propagate_beam(1, start_point, {})[f"{1}-{start_point}"]
 
 
 def main() -> None:
