@@ -52,6 +52,7 @@ python main.py
 - (⭐ ⭐) [Day 05: Cafeteria](https://adventofcode.com/2025/day/5)
 - (⭐ ⭐) [Day 06: Trash Compactor](https://adventofcode.com/2025/day/6)
 - (⭐ ⭐) [Day 07: Laboratories](https://adventofcode.com/2025/day/7)
+- (⭐ ⭐) [Day 08: Playground](https://adventofcode.com/2025/day/8)
 
 </details>
 
