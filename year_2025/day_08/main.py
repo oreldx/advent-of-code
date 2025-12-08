@@ -126,13 +126,83 @@ def problem_1() -> int:
 
 
 def problem_2() -> int:
+    def create_box_index(t: list) -> str:
+        return "-".join([str(d) for d in t])
+
     data = open_input()
-    return 0
+
+    unique_paires = {}
+    for idx, i in enumerate(data[:-1]):
+        for j in data[:idx] + data[idx + 1 :]:
+            if (create_box_index(j) + create_box_index(i)) in unique_paires:
+                continue
+            unique_key = create_box_index(i) + create_box_index(j)
+
+            unique_paires[unique_key] = {
+                "a": i,
+                "b": j,
+                "d": (i[0] - j[0]) ** 2 + (i[1] - j[1]) ** 2 + (i[2] - j[2]) ** 2,
+            }
+
+    paires = unique_paires.values()
+    shortest_distances = sorted(paires, key=lambda d: d["d"])
+
+    def find_group_idx(box_id: str, groups: list) -> int:
+        for idx, g in enumerate(groups):
+            if box_id in g:
+                return idx
+        return -1
+
+    groups = []
+    boxes = set()
+
+    longest = None
+    for idx, d in enumerate(shortest_distances):
+        if len(boxes) == len(data) and len(groups) == 1:
+            longest = shortest_distances[idx - 1]
+            break
+        box_0_idx = create_box_index(d["a"])
+        box_1_idx = create_box_index(d["b"])
+
+        # both points have already been visited
+        if box_0_idx in boxes and box_1_idx in boxes:
+            box_group_0_idx = find_group_idx(box_0_idx, groups)
+            box_group_1_idx = find_group_idx(box_1_idx, groups)
+            if box_group_0_idx == box_group_1_idx:
+                # Same edge visited (opposite direction)
+                continue
+
+            groups[box_group_0_idx] = groups[box_group_0_idx].union(
+                groups[box_group_1_idx]
+            )
+            groups.pop(box_group_1_idx)
+
+            continue
+
+        # of one the point has been visited to the related point is connected
+        if box_0_idx in boxes:
+            boxes.add(box_1_idx)
+            box_group_0_idx = find_group_idx(box_0_idx, groups)
+            groups[box_group_0_idx].add(box_1_idx)
+            continue
+
+        if box_1_idx in boxes:
+            boxes.add(box_0_idx)
+            box_group_1_idx = find_group_idx(box_1_idx, groups)
+            groups[box_group_1_idx].add(box_0_idx)
+            continue
+
+        # edge not found
+        boxes.add(box_0_idx)
+        boxes.add(box_1_idx)
+        groups.append(set([box_0_idx, box_1_idx]))
+
+    return longest["a"][0] * longest["b"][0]
 
 
 def main() -> None:
     if DEBUG:
-        print(problem_1())
+        print(problem_2())
         return
 
     match input("Choose which problem to print (1 or 2): "):
